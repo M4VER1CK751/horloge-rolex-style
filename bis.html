@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Horloge style cadran bleu</title>
+  <title>Horloge style cadran luxe</title>
   <style>
     body {
       background: #ffffff;
@@ -14,25 +14,35 @@
       margin: 0;
     }
     .clock {
-      width: 300px;
-      height: 300px;
-      border: 10px solid #c0c0c0; /* Argenté */
+      width: 320px;
+      height: 320px;
       border-radius: 50%;
-      background: radial-gradient(circle at center, #003366, #001f3f); /* Bleu profond */
+      background: radial-gradient(circle at center, #002f6c 0%, #001a33 100%);
+      box-shadow: inset 0 0 20px rgba(255,255,255,0.05), 0 0 10px rgba(0,0,0,0.4), 0 0 0 10px #c0c0c0;
       position: relative;
-      box-shadow: 0 0 20px rgba(0, 0, 0, 0.3), inset 0 0 15px rgba(255, 255, 255, 0.2);
+    }
+    .glass-overlay {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.15), transparent 60%);
+      z-index: 5;
     }
     .center {
-      width: 14px;
-      height: 14px;
-      background: #c0c0c0;
+      width: 16px;
+      height: 16px;
+      background: #ccc;
       border-radius: 50%;
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      z-index: 10;
-      box-shadow: 0 0 5px rgba(0,0,0,0.5);
+      box-shadow: 0 0 8px rgba(0,0,0,0.5);
+      z-index: 6;
     }
     .hand {
       position: absolute;
@@ -41,33 +51,60 @@
       transform-origin: bottom;
       transform: translateX(-50%) rotate(0deg);
       border-radius: 2px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.3);
     }
     .hour {
       width: 6px;
-      height: 70px;
-      background: linear-gradient(to bottom, #aaa, #666); /* Métallisé */
+      height: 80px;
+      background: linear-gradient(to top, #888, #d0d0d0);
       z-index: 3;
     }
     .minute {
       width: 4px;
-      height: 100px;
-      background: linear-gradient(to bottom, #bbb, #888); /* Métallisé */
+      height: 110px;
+      background: linear-gradient(to top, #999, #eee);
       z-index: 2;
     }
     .second {
       width: 2px;
-      height: 120px;
-      background: linear-gradient(to bottom, #ccc, #999); /* Métallisé */
+      height: 130px;
+      background: linear-gradient(to top, #bbb, #fff);
       z-index: 1;
+    }
+    .tick {
+      position: absolute;
+      width: 4px;
+      height: 12px;
+      background: #c0c0c0;
+      top: 4px;
+      left: 50%;
+      transform-origin: bottom center;
+      border-radius: 2px;
     }
   </style>
 </head>
 <body>
   <div class="clock">
+    <!-- Graduation -->
+    <script>
+      for (let i = 0; i < 60; i++) {
+        const tick = document.createElement("div");
+        tick.className = "tick";
+        if (i % 5 === 0) {
+          tick.style.height = "16px";
+          tick.style.width = "3px";
+          tick.style.background = "#e0e0e0";
+        }
+        tick.style.transform = `rotate(${i * 6}deg) translateX(-50%)`;
+        document.write(tick.outerHTML);
+      }
+    </script>
+    <!-- Aiguilles -->
     <div class="hand hour" id="hour"></div>
     <div class="hand minute" id="minute"></div>
     <div class="hand second" id="second"></div>
     <div class="center"></div>
+    <div class="glass-overlay"></div>
   </div>
 
   <script>
