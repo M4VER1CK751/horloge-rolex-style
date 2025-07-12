@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Horloge style Rolex</title>
+  <title>Horloge style cadran bleu</title>
   <style>
     body {
-      background: #111;
+      background: #ffffff;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -16,22 +16,23 @@
     .clock {
       width: 300px;
       height: 300px;
-      border: 8px solid #1d1d1d;
+      border: 10px solid #c0c0c0; /* Argenté */
       border-radius: 50%;
-      background: radial-gradient(circle, #1f1f1f, #000);
+      background: radial-gradient(circle at center, #003366, #001f3f); /* Bleu profond */
       position: relative;
-      box-shadow: 0 0 15px #007f5f inset;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.3), inset 0 0 15px rgba(255, 255, 255, 0.2);
     }
     .center {
-      width: 12px;
-      height: 12px;
-      background: #ccc;
+      width: 14px;
+      height: 14px;
+      background: #c0c0c0;
       border-radius: 50%;
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
       z-index: 10;
+      box-shadow: 0 0 5px rgba(0,0,0,0.5);
     }
     .hand {
       position: absolute;
@@ -39,23 +40,24 @@
       left: 50%;
       transform-origin: bottom;
       transform: translateX(-50%) rotate(0deg);
+      border-radius: 2px;
     }
     .hour {
       width: 6px;
       height: 70px;
-      background: #0f0;
+      background: linear-gradient(to bottom, #aaa, #666); /* Métallisé */
       z-index: 3;
     }
     .minute {
       width: 4px;
       height: 100px;
-      background: #0f0;
+      background: linear-gradient(to bottom, #bbb, #888); /* Métallisé */
       z-index: 2;
     }
     .second {
       width: 2px;
       height: 120px;
-      background: red;
+      background: linear-gradient(to bottom, #ccc, #999); /* Métallisé */
       z-index: 1;
     }
   </style>
