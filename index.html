@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Horloge luxe bleue</title>
+  <title>Horloge Style Datejust</title>
   <style>
     body {
       margin: 0;
@@ -15,30 +15,20 @@
       font-family: 'Segoe UI', sans-serif;
     }
     .clock {
-      width: 320px;
-      height: 320px;
+      width: 340px;
+      height: 340px;
       border-radius: 50%;
       position: relative;
-      background: radial-gradient(circle at center, #003366 0%, #001A33 100%);
+      background: conic-gradient(#003366 0deg, #005599 90deg, #001a33 180deg, #003366 270deg, #005599 360deg);
       box-shadow:
-        inset 0 0 30px rgba(255, 255, 255, 0.1),
-        0 0 0 12px #c0c0c0,
-        0 5px 15px rgba(0, 0, 0, 0.5);
-    }
-    .glass-overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      border-radius: 50%;
-      background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.2), transparent 60%);
-      z-index: 10;
+        0 0 0 12px #ccc,
+        inset 0 0 20px rgba(255, 255, 255, 0.1),
+        0 10px 20px rgba(0, 0, 0, 0.4);
     }
     .center {
       width: 14px;
       height: 14px;
-      background: #ccc;
+      background: #eee;
       border-radius: 50%;
       position: absolute;
       top: 50%;
@@ -54,64 +44,69 @@
       transform-origin: bottom;
       transform: translateX(-50%) rotate(0deg);
       border-radius: 2px;
+      box-shadow: 0 0 4px rgba(0,0,0,0.2);
     }
     .hour {
       width: 4px;
-      height: 70px;
-      background: linear-gradient(to top, #999, #ddd);
+      height: 80px;
+      background: linear-gradient(to top, #999, #fff);
       z-index: 3;
     }
     .minute {
       width: 3px;
-      height: 100px;
-      background: linear-gradient(to top, #aaa, #eee);
+      height: 110px;
+      background: linear-gradient(to top, #bbb, #fff);
       z-index: 2;
     }
     .second {
       width: 1px;
       height: 120px;
-      background: #f55;
+      background: #e33;
       z-index: 1;
     }
-    .tick {
+    .marker {
       position: absolute;
-      width: 2px;
-      height: 14px;
-      background: #ccc;
-      top: 6px;
-      left: 50%;
-      transform-origin: bottom center;
-      border-radius: 1px;
-    }
-    .tick.major {
+      width: 6px;
       height: 20px;
-      background: #fff;
-      width: 3px;
+      background: linear-gradient(to bottom, #ccc, #fff);
+      top: 0;
+      left: 50%;
+      transform-origin: center 170px;
+      border-radius: 2px;
     }
     .number {
       position: absolute;
-      color: #ddd;
-      font-size: 16px;
+      color: #fff;
+      font-size: 14px;
       font-weight: bold;
       transform: translate(-50%, -50%);
       pointer-events: none;
     }
-    .logo-text {
+    .glass {
       position: absolute;
-      top: 40px;
       width: 100%;
-      text-align: center;
-      font-size: 14px;
-      letter-spacing: 1px;
-      color: #e0e0e0;
-      z-index: 9;
+      height: 100%;
+      border-radius: 50%;
+      top: 0;
+      left: 0;
+      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.15), transparent 70%);
+      z-index: 10;
     }
   </style>
 </head>
 <body>
   <div class="clock">
-    <div class="logo-text">Classic Time</div>
-    <div class="glass-overlay"></div>
+    <div class="glass"></div>
+    <!-- Index -->
+    <script>
+      for (let i = 0; i < 12; i++) {
+        const div = document.createElement("div");
+        div.className = "marker";
+        div.style.transform = `rotate(${i * 30}deg) translateX(-50%)`;
+        document.body.querySelector('.clock').appendChild(div);
+      }
+    </script>
+    <!-- Aiguilles -->
     <div class="hand hour" id="hour"></div>
     <div class="hand minute" id="minute"></div>
     <div class="hand second" id="second"></div>
@@ -119,33 +114,6 @@
   </div>
 
   <script>
-    const clock = document.querySelector(".clock");
-
-    // Ticks
-    for (let i = 0; i < 60; i++) {
-      const tick = document.createElement("div");
-      tick.className = "tick";
-      if (i % 5 === 0) tick.classList.add("major");
-      tick.style.transform = `rotate(${i * 6}deg) translateX(-50%)`;
-      clock.appendChild(tick);
-    }
-
-    // Numbers (12, 3, 6, 9)
-    const numbers = [12, 3, 6, 9];
-    numbers.forEach((n, i) => {
-      const num = document.createElement("div");
-      num.className = "number";
-      const angle = (n / 12) * 2 * Math.PI;
-      const radius = 125;
-      const x = 160 + radius * Math.sin(angle);
-      const y = 160 - radius * Math.cos(angle);
-      num.style.left = `${x}px`;
-      num.style.top = `${y}px`;
-      num.innerText = n;
-      clock.appendChild(num);
-    });
-
-    // Clock hands
     const hourHand = document.getElementById("hour");
     const minuteHand = document.getElementById("minute");
     const secondHand = document.getElementById("second");
