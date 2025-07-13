@@ -16,36 +16,37 @@
       font-family: 'Segoe UI', sans-serif;
     }
     .clock {
-      width: 340px;
-      height: 340px;
+      width: 140px;
+      height: 140px;
       border-radius: 50%;
       position: relative;
       background: conic-gradient(#003366 0deg, #005599 90deg, #001a33 180deg, #003366 270deg, #005599 360deg);
       box-shadow:
-        0 0 0 12px #ccc,
-        inset 0 0 20px rgba(255, 255, 255, 0.1),
-        0 10px 20px rgba(0, 0, 0, 0.4);
+        0 0 0 5px #ccc,
+        inset 0 0 8px rgba(255, 255, 255, 0.1),
+        0 4px 8px rgba(0, 0, 0, 0.4);
     }
     .brand {
       font-family: 'Pinyon Script', cursive;
-      font-size: 24px;
+      font-size: 16px;
       color: #ffffffcc;
       position: absolute;
-      top: 42px;
+      top: 24px;
       width: 100%;
       text-align: center;
       z-index: 9;
+      letter-spacing: 1px;
     }
     .center {
-      width: 14px;
-      height: 14px;
+      width: 6px;
+      height: 6px;
       background: #eee;
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
       z-index: 6;
-      box-shadow: 0 0 6px rgba(0, 0, 0, 0.4);
+      box-shadow: 0 0 2px rgba(0, 0, 0, 0.4);
     }
     .hand {
       position: absolute;
@@ -53,34 +54,34 @@
       left: 50%;
       transform-origin: bottom;
       transform: translateX(-50%) rotate(0deg);
-      box-shadow: 0 0 4px rgba(0,0,0,0.2);
+      box-shadow: 0 0 2px rgba(0,0,0,0.2);
     }
     .hour {
-      width: 4px;
-      height: 80px;
+      width: 5px;
+      height: 35px;
       background: linear-gradient(to top, #999, #fff);
       z-index: 3;
     }
     .minute {
-      width: 3px;
-      height: 110px;
+      width: 4px;
+      height: 50px;
       background: linear-gradient(to top, #bbb, #fff);
       z-index: 2;
     }
     .second {
       width: 1px;
-      height: 120px;
+      height: 56px;
       background: #e33;
       z-index: 1;
     }
     .marker {
       position: absolute;
-      width: 6px;
-      height: 20px;
+      width: 4px;
+      height: 14px;
       background: linear-gradient(to bottom, #ccc, #fff);
       top: 0;
       left: 50%;
-      transform-origin: center 170px;
+      transform-origin: center 70px;
     }
     .glass {
       position: absolute;
